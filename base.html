@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeResourceOrganizer</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/base_style.css') }}">
+</head>
+<body>
+    <!-- Header section -->
+    <header>
+        <h1 class="title">My Code Book</h1>
+        <button id="signinBtn" class="signin">Sign</button>
+        <div class="quote-scroll">
+            <div class="quotes">
+                <p>Unlocking possibilities through code</p>
+                <p>Embrace the artistry of programming</p>
+                <p>Transform ideas into digital reality</p>
+                <p>Empower change through elegant code</p>
+            </div>
+        </div>
+        <!-- Navigation menu -->
+        <nav class="menu-options">
+            <ul id="menuItems">
+                {% for title in titles %}
+                    <li>
+                        <a href="#" class="title-link" data-title="{{ title }}">{{ title }}</a>
+                        <span class="edit" data-title="{{ title }}">✎</span>
+                        <span class="delete" data-title="{{ title }}">×</span>
+                    </li>
+                {% endfor %}
+                <li><a href="#" id="addTitle">+ Add Title</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Background image -->
+    <img src="{{ url_for('static', filename='media/planet5.jpg') }}" alt="Planet Image" class="background-image">
+
+    <!-- Modals for adding and editing titles and items -->
+    <div id="addTitleModal" class="modal">
+        <div class="modal-content">
+            <form id="addTitleForm" action="{{ url_for('add_title') }}" method="POST">
+                <label for="newTitle">New Title:</label><br>
+                <input type="text" id="newTitle" name="newTitle" required><br><br>
+                <button type="submit">Add</button>
+                <button type="button" class="close-modal-btn" onclick="closeModal('addTitleModal')">Close</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="editTitleModal" class="modal">
+        <div class="modal-content">
+            <form id="editTitleForm" action="{{ url_for('edit_title') }}" method="POST">
+                <input type="hidden" id="oldTitle" name="oldTitle">
+                <label for="newTitle">Edit Title:</label><br>
+                <input type="text" id="newTitle" name="newTitle" required><br><br>
+                <button type="submit">Save</button>
+                <button type="button" class="close-modal-btn" onclick="closeModal('editTitleModal')">Close</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="addItemModal" class="modal">
+        <div class="modal-content">
+            <form id="addItemForm" action="{{ url_for('add_item') }}" method="POST">
+                <input type="hidden" id="itemTitle" name="itemTitle">
+                <label for="newItem">New Item:</label><br>
+                <input type="text" id="newItem" name="newItem" required><br><br>
+                <button type="submit">Add</button>
+                <button type="button" class="close-modal-btn" onclick="closeModal('addItemModal')">Close</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="editItemModal" class="modal">
+        <div class="modal-content">
+            <form id="editItemForm" action="{{ url_for('edit_item') }}" method="POST">
+                <input type="hidden" id="editItemTitle" name="editItemTitle">
+                <input type="hidden" id="oldItem" name="oldItem">
+                <label for="newItem">Edit Item:</label><br>
+                <input type="text" id="newItem" name="newItem" required><br><br>
+                <button type="submit">Save</button>
+                <button type="button" class="close-modal-btn" onclick="closeModal('editItemModal')">Close</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal for signing in -->
+    <div id="signModal" class="modal">
+        <div class="modal-content">
+            <!--<span class="close" onclick="closeModal('signModal')">&times;</span>-->
+            <form id="signInForm">
+                <label for="signInUsername">Username:</label>
+                <input type="text" id="signInUsername" name="signInUsername" required><br><br>
+                <label for="signInPassword">Password:</label>
+                <input type="password" id="signInPassword" name="signInPassword" required><br><br>
+                <button type="submit">Sign In</button>
+                <button type="button" class="close-modal-btn" onclick="closeModal('signModal')">Close</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Section for displaying titles and associated items -->
+    <div class="titles">
+        {% for title in titles %}
+            <div class="title-section">
+                <h2 class="title" data-title="{{ title }}">{{ title }}</h2>
+                <div class="item-list" id="{{ title|replace(' ', '_') }}_items" style="display: none;">
+                    <button class="add-item-btn" data-title="{{ title }}">Add Item +</button>
+                    {% for item in items[title] %}
+                        <div class="item-box">
+                            <a href="{{ url_for('item_detail', title=title, item=item) }}">{{ item }}</a>
+                            <span class="edit-item" data-title="{{ title }}" data-item="{{ item }}">✎</span>
+                            <span class="delete-item" data-title="{{ title }}" data-item="{{ item }}">×</span>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+    <!-- Add Item Modal -->
+    <div id="addItemModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <form id="addItemForm" method="POST" action="{{ url_for('add_item') }}">
+                <input type="hidden" name="itemTitle" id="itemTitle">
+                <label for="newItem">New Item</label>
+                <input type="text" id="newItem" name="newItem" required>
+                <button type="submit">Add Item</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="{{ url_for('static', filename='js/base_script.js') }}"></script>
+
+    <!-- Function to close modals-->
+    <script>    
+    function closeModal(modalId) {
+        document.getElementById(modalId).style.display = 'none';
+    }
+    </script>    
+</body>
+</html>

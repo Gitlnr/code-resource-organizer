@@ -1,0 +1,101 @@
+        /* Default styles and set base font */
+        body {
+            background-color: #2d2d2d; 
+            color: #ffffff; 
+            font-family: 'Courier New', Courier, monospace;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+        }
+
+        /* Animation for fading in the title */
+        @keyframes fadeInTitle {
+            0% {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(-20);
+            }
+        } 
+
+        /* Styles for the main title */
+        .title {
+            background-color: #1e1e1e; 
+            color: #61dafb; 
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 2.5em;
+            animation: fadeInTitle 2s ease-in-out; /* Title animation */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            text-shadow: 0 0 8px #61dafb, 0 0 16px #61dafb;/* Glow effect */
+        }
+
+        /* Animation for fading in link items */
+        @keyframes fadeInLinkitem {
+            0% {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Styles for the container of links */
+        .links-container {
+            margin-top: 100px;
+            padding: 20px;
+            text-decoration: none; /* Remove underline for links */
+            animation: fadeInLinkitem  3s ease-in-out forwards; /* List items animation */
+        }
+
+        .link-item {
+            margin: 10px 0;
+            background-color: #ffffffbe;
+            padding: 10px;
+            border-radius: 5px;
+            font-style: italic; 
+            box-shadow: 0 0 8px #c0e2eb89, 0 0 16px #61dafb04; /* Glow effect */
+            font-weight: bold; 
+            font-size: 25px; 
+            color: black;
+        }
+
+        /* Styles for the section where links can be added */
+        .add-link {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .add-link button {
+            background-color: #61dafb;
+            border: none;
+            padding: 10px 20px;
+            color: #1e1e1e;
+            font-size: 1em;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            box-shadow: 0 0 8px #61dafb, 0 0 16px #61dafb; /* Glow effect */
+        }
+
+        /* Hover styles for the add link button */
+        .add-link button:hover {
+            background-color: #4c9ac1;
+        }
+
+        /* styles for icons */
+        .black-icon {
+            color: black; 
+            cursor: pointer; 
+            margin-left: 5px; 
+        }
+        
