@@ -15,7 +15,7 @@ pip install -r requirements.txt
 1. Run the Flask application:
    python app.py
 
-2. Open your web browser and navigate to http://localhost to access the Code Resource Organizer.
+3. Open your web browser and navigate to http://localhost to access the Code Resource Organizer.
 
 ## Features
 ●Add Titles: Organize your coding resources into titled categories.
