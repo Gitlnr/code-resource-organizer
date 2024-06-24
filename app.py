@@ -1,3 +1,8 @@
+#app.py
+#Author: Rahul
+#Description: This Flask application manages titles and items, allowing CRUD operations
+# for organizing coding resources.
+
 from flask import Flask, render_template, request, redirect, url_for, jsonify
 
 app = Flask(__name__)
@@ -15,7 +20,7 @@ items = {
 
 @app.route('/')
 def index():
-    return render_template('index.html', titles=titles, items=items)
+    return render_template('index.html', titles=titles, items=items, version=app.config['APP_VERSION'])
 
 @app.route('/add_title', methods=['POST'])
 def add_title():
@@ -79,10 +84,6 @@ def item_detail(title, item):
     if title in items and item in items[title]:
         return render_template('item_detail.html', title=title, item=item)
     return "Item not found", 404
-
-@app.route('/')
-def index():
-    return render_template('index.html', version=app.config['APP_VERSION'])
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80, debug=False)
