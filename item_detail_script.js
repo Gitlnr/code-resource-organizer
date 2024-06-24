@@ -1,4 +1,5 @@
-
+// item_detail_script.js
+// Author: Rahul
     document.addEventListener('DOMContentLoaded', function() {
         
         let itemLinksKey = `links_${window.location.pathname}`; // Unique key for item's links

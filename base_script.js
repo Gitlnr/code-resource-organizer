@@ -1,4 +1,5 @@
-// script.js
+// base_script.js
+// Author: Rahul
 
 document.addEventListener('DOMContentLoaded', function() {
     const titleContent = document.getElementById('titleContent');
