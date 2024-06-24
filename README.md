@@ -5,8 +5,8 @@ The Code Resource Organizer is a web application designed to help users efficien
 
 ## Installation
 1. Clone the repository:
-   git clone https://github.com/yourusername/your-repository.git
-   cd your-repository
+   git clone https://github.com/Gitlnr/code-resource-organizer.git
+   cd code-resource-organizer
    
 2. Install dependencies: 
 pip install -r requirements.txt
